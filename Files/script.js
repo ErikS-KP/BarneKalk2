@@ -9,12 +9,11 @@ let input = ""; // Brukerens svar
 
 // Legger til event listeners på knappene 1-9
 let buttons = document.querySelectorAll(".knapp");
-for (let button of buttons) {
-    button.addEventListener("click", function () {
-        // Sjekker om knappens tekst er et tall mellom 1 og 9
-        if (parseInt(button.innerHTML) >= 1 && parseInt(button.innerHTML) <= 9) {
-            sporsmaal.innerHTML += ` ${button.innerHTML}`;
-            input = button.innerHTML; // Lagre brukerens input
+for(let button of buttons){
+    button.addEventListener("click", function(){
+        if(button.innerHTML in [1,2,3,4,5,6,7,8,9]){
+            sporsmaal.innerHTML += ` ${button.innerHTML}`
+            input = button.innerHTML
         }
     });
 }
@@ -49,29 +48,20 @@ function LagSpørsmål() {
     sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2} = ?`;
 }
 
-// Funksjon for å vise om svaret er riktig eller feil
 function visRiktigFeilSvar() {
-    let brukerSvar = parseInt(input); // Henter brukerens svar fra input
-    let riktigSvar = tall[0] + tall[1]; // Regner ut riktig svar
-
-    if (brukerSvar === riktigSvar) {
+    if (parseInt(brukerSvar) === riktigSvar) {
         console.log("Riktig svar!");
         score++;
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
         }
-        setTimeout(() => {
-            LagSpørsmål();
-            input = ""; // Nullstill input
-        }, 1500);
+        // Nytt spørsmål etter litt tid
+        setTimeout(LagSpørsmål, 1500);
     } else {
         console.log("Feil svar.");
         score = 0;
-        setTimeout(() => {
-            LagSpørsmål();
-            input = ""; // Nullstill input
-        }, 1500);
+        setTimeout(LagSpørsmål, 1500);
     }
 }
 
@@ -82,8 +72,6 @@ document.querySelector("#reset").addEventListener("click", function () {
     input = "";
 });
 
-// Event listener for submit-knappen
-document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar);
+document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(brukerSvar, tall[0] + tall[1]));
 
-// Starter med et spørsmål
-LagSpørsmål();
+tall = LagSpørsmål();
