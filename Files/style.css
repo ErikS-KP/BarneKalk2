@@ -50,7 +50,7 @@ ul h1{
     justify-content: center;
     flex-direction: column;
     gap: 7%;
-    align-items: center;
+    align-items:center;
     width: 30%;
     height: 80%;
     background-color: rgba(41, 21, 21, 0.549);
@@ -58,6 +58,9 @@ ul h1{
     border: 15px solid green;
 }
 #spørsmål{
+    display: flex;
+    font-size: 2rem;
+    align-items: center;
     width: 80%;
     height: 10%;
     background-color: white;
@@ -65,8 +68,8 @@ ul h1{
 }
 #knapper{
     display: grid;
-    gap: 5%;
-    width: 80%;
+    gap: 3%;
+    width: 70%;
     height: 60%;
     grid-template-columns: repeat(3, 1fr);
 }

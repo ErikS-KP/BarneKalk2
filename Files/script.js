@@ -1,10 +1,22 @@
+let sporsmaal = document.getElementById("spørsmål")
 let highscore = 0;
 let score = 0;
+let tall = [];
+let input;
+
+let buttons = document.querySelectorAll(".knapp");
+for(let button of buttons){
+    button.addEventListener("click", function(){
+        if(button.innerHTML in [1,2,3,4,5,6,7,8,9]){
+            sporsmaal.innerHTML += ` ${button.innerHTML}`
+            input = button.innerHTML
+        }
+    })
+}
 
 function lagre_highscore() {
     localStorage.highscore = highscore;
 }
-
 
 function load_highscore() {
     if (localStorage.highscore) {
@@ -25,7 +37,7 @@ function LagSpørsmål() {
 
     let tall = [tall1,tall2];
 
-    document.getElementById("spørsmål").innerHTML = "Hva er " + tall1 + " + " + tall2 + " = ?: ";
+    sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2} = ?: `;
     return tall;
 };
 
@@ -49,6 +61,6 @@ document.querySelector("#reset").addEventListener("click", function() {
     tall = LagSpørsmål()
 });
 
-document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(brukerSvar, tall[0] + tall[1]));
+document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(input, tall[0] + tall[1]));
 
 tall = LagSpørsmål();
