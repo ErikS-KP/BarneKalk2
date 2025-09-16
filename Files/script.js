@@ -1,5 +1,7 @@
 let highscore = 0;
 let score = 0;
+let riktigSvar = 0;
+let brukerSvar = "";
 
 function lagre_highscore() {
     localStorage.highscore = highscore;
@@ -28,18 +30,19 @@ function LagSpørsmål() {
     return sum;
 };
 
-function visRiktigFeilSvar(brukerSvar, riktigSvar) {
-    if (brukerSvar === riktigSvar) {
+function visRiktigFeilSvar() {
+    if (parseInt(brukerSvar) === riktigSvar) {
         console.log("Riktig svar!");
-        setTimeout(LagSpørsmål, 2000);
         score++;
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
         }
+        // Nytt spørsmål etter litt tid
+        setTimeout(LagSpørsmål, 1500);
     } else {
         console.log("Feil svar.");
-        setTimeout(LagSpørsmål, 2000);
-        score=0;
+        score = 0;
+        setTimeout(LagSpørsmål, 1500);
     }
-};
+}
