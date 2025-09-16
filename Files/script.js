@@ -41,19 +41,20 @@ function LagSpørsmål() {
     return tall;
 };
 
-function visRiktigFeilSvar(brukerSvar, riktigSvar) {
-    if (brukerSvar === riktigSvar) {
+function visRiktigFeilSvar() {
+    if (parseInt(brukerSvar) === riktigSvar) {
         console.log("Riktig svar!");
-        setTimeout(LagSpørsmål, 2000);
         score++;
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
         }
+        // Nytt spørsmål etter litt tid
+        setTimeout(LagSpørsmål, 1500);
     } else {
         console.log("Feil svar.");
-        setTimeout(LagSpørsmål, 2000);
-        score=0;
+        score = 0;
+        setTimeout(LagSpørsmål, 1500);
     }
 };
 
@@ -61,6 +62,6 @@ document.querySelector("#reset").addEventListener("click", function() {
     tall = LagSpørsmål()
 });
 
-document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(input, tall[0] + tall[1]));
+document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(brukerSvar, tall[0] + tall[1]));
 
 tall = LagSpørsmål();
