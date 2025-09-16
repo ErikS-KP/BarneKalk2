@@ -7,7 +7,9 @@ let input;
 let buttons = document.querySelectorAll(".knapp");
 for(let button of buttons){
     button.addEventListener("click", function(){
-        if(button.innerHTML in [1,2,3,4,5,6,7,8,9]){
+        console.log(button.innerHTML)
+        if(button.innerHTML in [0,1,2,3,4,5,6,7,8,9]){
+            console.log(button.innerHTML)
             sporsmaal.innerHTML += ` ${button.innerHTML}`
             input = button.innerHTML
         }
@@ -50,11 +52,15 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
             lagre_highscore();
         }
         // Nytt spørsmål etter litt tid
-        setTimeout(LagSpørsmål, 1500);
+        setTimeout(function(){
+            tall = LagSpørsmål()
+        }, 1500);
     } else {
         console.log("Feil svar.");
         score = 0;
-        setTimeout(LagSpørsmål, 1500);
+        setTimeout(function(){
+            tall = LagSpørsmål()
+        }, 1500);
     }
 };
 
@@ -64,6 +70,7 @@ document.querySelector("#reset").addEventListener("click", function() {
 
 document.querySelector("#submit").addEventListener("click", function() {
     visRiktigFeilSvar(input, tall[0] + tall[1]);
+    tall = LagSpørsmål()
 });
 
-tall = LagSpørsmål();
+tall = LagSpørsmål()
