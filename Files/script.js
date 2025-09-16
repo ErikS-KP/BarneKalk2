@@ -1,5 +1,13 @@
 let highscore = 0;
 let score = 0;
+let input;
+
+let buttons = document.querySelectorAll('.knapp');
+for(let button of buttons){
+    button.addEventListener("click", function(){
+        input = button.innerHTML
+    })
+}
 
 function lagre_highscore() {
     localStorage.highscore = highscore;
