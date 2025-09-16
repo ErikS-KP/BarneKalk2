@@ -41,7 +41,7 @@ function LagSpørsmål() {
     return tall;
 };
 
-function visRiktigFeilSvar() {
+function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     if (parseInt(brukerSvar) === riktigSvar) {
         console.log("Riktig svar!");
         score++;
@@ -62,6 +62,8 @@ document.querySelector("#reset").addEventListener("click", function() {
     tall = LagSpørsmål()
 });
 
-document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(brukerSvar, tall[0] + tall[1]));
+document.querySelector("#submit").addEventListener("click", function() {
+    visRiktigFeilSvar(input, tall[0] + tall[1]);
+});
 
 tall = LagSpørsmål();
