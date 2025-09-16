@@ -1,5 +1,6 @@
 let highscore = 0;
 let score = 0;
+let tall = []
 
 function lagre_highscore() {
     localStorage.highscore = highscore;
@@ -22,10 +23,11 @@ function randInt(min, max) {
 function LagSpørsmål() {
     let tall1 = randInt(0, 9);
     let tall2 = randInt(0,10-tall1);
-    let sum = tall1+tall2;
 
-    document.getElementById("spørsmål").innerHTML = "Hva er " + tall1 + " + " + tall2 + " = ?";
-    return sum;
+    let tall = [tall1,tall2];
+
+    document.getElementById("spørsmål").innerHTML = "Hva er " + tall1 + " + " + tall2 + " = ?: ";
+    return tall;
 };
 
 function visRiktigFeilSvar(brukerSvar, riktigSvar) {
@@ -43,3 +45,11 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         score=0;
     }
 };
+
+document.querySelector("#reset").addEventListener("click", function() {
+    tall = LagSpørsmål()
+});
+
+document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(brukerSvar, tall[0] + tall[1]));
+
+tall = LagSpørsmål();
