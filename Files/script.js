@@ -1,48 +1,56 @@
-let sporsmaal = document.getElementById("spørsmål")
+// Henter HTML-elementet for spørsmål
+let sporsmaal = document.getElementById("spørsmål");
+
+// Variabler for poeng og highscore
 let highscore = 0;
 let score = 0;
 let tall = [];
-let input = ""
+let input;
 
+// Legger til event listeners på knappene 1-9
 let buttons = document.querySelectorAll(".knapp");
 for(let button of buttons){
     button.addEventListener("click", function(){
-        const value = button.innerHTML;
-        if(["0","1","2","3","4","5","6","7","8","9"].includes(value)){
-            sporsmaal.innerHTML += value;
-            input += value; // <-- Concatenate digits
+        console.log(button.innerHTML)
+        if(button.innerHTML in [0,1,2,3,4,5,6,7,8,9]){
+            console.log(button.innerHTML)
+            sporsmaal.innerHTML += ` ${button.innerHTML}`
+            input = button.innerHTML
         }
     });
 }
 
+// Funksjon for å lagre highscore i localStorage
 function lagre_highscore() {
     localStorage.highscore = highscore;
 }
 
+// Funksjon for å hente highscore fra localStorage
 function load_highscore() {
     if (localStorage.highscore) {
-        highscore = localStorage.highscore;
+        highscore = parseInt(localStorage.highscore);
     }
 }
 load_highscore();
 
-console.log("Highscore: " + localStorage.highscore);
+console.log("Highscore: " + highscore);
 
+// Funksjon for å generere et tilfeldig heltall mellom min og max
 function randInt(min, max) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-};
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
+// Funksjon for å lage et nytt spørsmål
 function LagSpørsmål() {
     let tall1 = randInt(0, 9);
-    let tall2 = randInt(0,10-tall1);
+    let tall2 = randInt(0, 10 - tall1);
 
-    let tall = [tall1,tall2];
+    tall = [tall1, tall2]; // Oppdaterer global tall-array
 
-    sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2} = ?: `;
-    return tall;
-};
+    sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2} = ?`;
+}
 
-function visRiktigFeilSvar(brukerSvar, riktigSvar) {
+function visRiktigFeilSvar() {
     if (parseInt(brukerSvar) === riktigSvar) {
         sporsmaal.innerHTML = "Riktig!";
         score++;
@@ -53,25 +61,26 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         // Nytt spørsmål etter litt tid
         setTimeout(function(){
             tall = LagSpørsmål()
-            console.log("ny")
         }, 1500);
     } else {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
         setTimeout(function(){
             tall = LagSpørsmål()
-            console.log("ny1")
         }, 1500);
     }
-};
+}
 
-document.querySelector("#reset").addEventListener("click", function() {
-    tall = LagSpørsmål()
+// Event listener for reset-knappen
+document.querySelector("#reset").addEventListener("click", function () {
+    score = 0; // Nullstill poeng
+    LagSpørsmål();
+    input = "";
 });
 
 document.querySelector("#submit").addEventListener("click", function() {
     visRiktigFeilSvar(input, tall[0] + tall[1]);
-    input = "";
+    tall = LagSpørsmål()
 });
 
-tall = LagSpørsmål()
+tall = LagSpørsmål();
