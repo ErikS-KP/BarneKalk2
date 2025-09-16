@@ -2,18 +2,17 @@ let sporsmaal = document.getElementById("spørsmål")
 let highscore = 0;
 let score = 0;
 let tall = [];
-let input;
+let input = ""
 
 let buttons = document.querySelectorAll(".knapp");
 for(let button of buttons){
     button.addEventListener("click", function(){
-        console.log(button.innerHTML)
-        if(button.innerHTML in [0,1,2,3,4,5,6,7,8,9]){
-            console.log(button.innerHTML)
-            sporsmaal.innerHTML += ` ${button.innerHTML}`
-            input = button.innerHTML
+        const value = button.innerHTML;
+        if(["0","1","2","3","4","5","6","7","8","9"].includes(value)){
+            sporsmaal.innerHTML += value;
+            input += value; // <-- Concatenate digits
         }
-    })
+    });
 }
 
 function lagre_highscore() {
@@ -45,7 +44,7 @@ function LagSpørsmål() {
 
 function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     if (parseInt(brukerSvar) === riktigSvar) {
-        console.log("Riktig svar!");
+        sporsmaal.innerHTML = "Riktig!";
         score++;
         if (score > highscore) {
             highscore = score;
@@ -54,12 +53,14 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         // Nytt spørsmål etter litt tid
         setTimeout(function(){
             tall = LagSpørsmål()
+            console.log("ny")
         }, 1500);
     } else {
-        console.log("Feil svar.");
+        sporsmaal.innerHTML = "Feil!";
         score = 0;
         setTimeout(function(){
             tall = LagSpørsmål()
+            console.log("ny1")
         }, 1500);
     }
 };
@@ -70,7 +71,7 @@ document.querySelector("#reset").addEventListener("click", function() {
 
 document.querySelector("#submit").addEventListener("click", function() {
     visRiktigFeilSvar(input, tall[0] + tall[1]);
-    tall = LagSpørsmål()
+    input = "";
 });
 
 tall = LagSpørsmål()
