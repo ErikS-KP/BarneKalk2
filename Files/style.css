@@ -1,6 +1,7 @@
 body{
     margin: 0;
-    background-color: lightblue;
+    overflow-x: hidden;
+    background-color: rgb(15, 165, 215);
 }
 header{
     display: flex;
@@ -18,17 +19,55 @@ header h1{
     width:600%;
     height: 130%;
     background-color: green;
+
 }
 ul{
     display: flex;
     justify-content: center;
     align-items: center;
     top: 0;
+    z-index: 2;
     position: absolute;
     height: 12vh;
     width: 100%;
     margin: 0;
+    background-color: green;
 }
 ul h1{
     color: white;
+}
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 89vh;
+
+}
+#kalk-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7%;
+    align-items: center;
+    width: 30%;
+    height: 80%;
+    background-color: rgba(41, 21, 21, 0.549);
+    border-radius: 80px;
+    border: 15px solid green;
+}
+#spørsmål{
+    width: 80%;
+    height: 10%;
+    background-color: white;
+}
+#knapper{
+    display: grid;
+    gap: 5%;
+    width: 80%;
+    height: 60%;
+    grid-template-columns: repeat(3, 1fr);
+}
+.knapp{
+    border-radius: 30px;
+    font-size: 5rem;
 }
