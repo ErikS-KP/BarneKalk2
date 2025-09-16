@@ -5,8 +5,14 @@ function randInt(min, max) {
 function LagSpørsmål() {
     let tall1 = randInt(0, 9);
     let tall2 = randInt(0,10-tall1);
-    console.log(tall1,tall2);
-
-    return tall1,tall2;
+    let spørsmål = "Hva er " + tall1 + " + " + tall2 + " ?";
+    return spørsmål;
 };
 
+function visRiktigFeilSvar(brukerSvar, riktigSvar) {
+    if (brukerSvar === riktigSvar) {
+        console.log("Riktig svar!");
+    } else {
+        console.log("Feil svar.");
+    }
+}
