@@ -5,8 +5,8 @@ function randInt(min, max) {
 function LagSpørsmål() {
     let tall1 = randInt(0, 9);
     let tall2 = randInt(0,10-tall1);
-    let spørsmål = "Hva er " + tall1 + " + " + tall2 + " ?";
-    return spørsmål;
+    let tall = [tall1, tall2];
+    return tall;
 };
 
 function visRiktigFeilSvar(brukerSvar, riktigSvar) {
