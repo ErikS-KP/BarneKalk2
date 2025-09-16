@@ -42,4 +42,4 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         setTimeout(LagSpørsmål, 2000);
         score=0;
     }
-}
+};
