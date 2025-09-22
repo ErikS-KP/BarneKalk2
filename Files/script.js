@@ -26,7 +26,10 @@ document.addEventListener("keydown", function (event) {
         input += event.key;
         let questionText = `Hva er ${tall[0]} + ${tall[1]}?: `;
         sporsmaal.innerHTML = questionText + input;
-        console.log("Input: " + input);
+    }
+    if (event.key === "Enter") {
+        visRiktigFeilSvar(input, (tall[0] + tall[1]));
+        input = "";
     }
 });
 
