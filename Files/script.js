@@ -80,12 +80,13 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
-            document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
+            document.getElementById("high-score").innerHTML = "High-score: " + highscore;
+            document.getElementById("score").innerHTML = "Score: " + score;
         }
         setTimeout(function(){
-             document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
+            document.getElementById("riktig-popup").style.display = "none";
             tall = LagSpørsmål()
-        }, 3000);
+        }, 500); // Skjuler popup etter 0,5 sekunder
     } else {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
