@@ -65,16 +65,23 @@ function LagSpørsmål() {
 
 function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     if (parseInt(brukerSvar) === riktigSvar) {
-        sporsmaal.innerHTML = "Riktig!";
-         document.getElementById("riktig-popup").style.display = "flex";
-        score++;
+        // Liste med bilde-URLer
+        const bilder = [
+            "Assets/Bamsevideoer/penguin.gif",
+            "Assets/Bamsevideoer/bamse.gif"
+        ];
+        // Velg et tilfeldig bilde
+        const tilfeldigBilde = bilder[Math.floor(Math.random() * bilder.length)];
+        document.getElementById("riktig-bilde").src = tilfeldigBilde;
 
+        document.getElementById("riktig-popup").style.display = "flex";
+        score++;
+        playVideo();
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
             document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
         }
-        // Nytt spørsmål etter litt tid
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
             tall = LagSpørsmål()
@@ -83,7 +90,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
         setTimeout(function(){
-            tall = LagSpørsmål()
+            tall = LagSpørsmål();
         }, 1500);
     }
 }
