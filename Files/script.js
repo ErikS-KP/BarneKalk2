@@ -45,6 +45,8 @@ function load_highscore() {
     }
 }
 load_highscore();
+document.getElementById("high-score").innerHTML = "Highscore: " + highscore;
+document.getElementById("score").innerHTML = "Score: " + score;
 
 
 // Funksjon for å generere et tilfeldig heltall mellom min og max
@@ -80,7 +82,8 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
-            document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
+            document.getElementById("high-score").innerHTML = "Highscore: " + highscore;
+            document.getElementById("score").innerHTML = "Score: " + score;
         }
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
