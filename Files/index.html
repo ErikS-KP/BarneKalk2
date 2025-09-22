@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Definerer dokumenttypen som HTML5 -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <meta charset="UTF-8"> <!-- Tegnsett for dokumentet -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivt design -->
+    <link rel="stylesheet" href="style.css"> <!-- Kobler til CSS-fil -->
+    <title>Document</title> <!-- Tittel på siden -->
 </head>
 <body>
     
     <header>
+        <!-- Dekorative baller i headeren -->
         <div class="ball"></div>
         <div class="ball"></div>
         <div class="ball"></div>
@@ -20,20 +21,22 @@
     </header>
 
     <ul>
-        <h1>Barnekalk</h1>
+        <h1>Barnekalk</h1> <!-- Sidetittel -->
     </ul>    
 
     <div id="container">
 
         <div id="score-container">
+            <!-- Viser high-score og nåværende score -->
             <p class="scoring" id="high-score">High-score: </p>
             <p class="scoring" id="score">Score: </p>
         </div>
 
         <div id="kalk-container">
-            <div id="spørsmål"></div>
+            <div id="spørsmål"></div> <!-- Her vises regnestykket/spørsmålet -->
 
             <div id="knapper">
+                <!-- Tallknapper og funksjonsknapper -->
                 <button class="knapp" id="1">1</button>
                 <button class="knapp" id="2">2</button>
                 <button class="knapp" id="3">3</button>
@@ -43,21 +46,21 @@
                 <button class="knapp" id="7">7</button>
                 <button class="knapp" id="8">8</button>
                 <button class="knapp" id="9">9</button>
-                <button class="knapp" id="reset"></button>
+                <button class="knapp" id="reset"></button> <!-- Nullstillingsknapp -->
                 <button class="knapp" id="0">0</button>
-                <button class="knapp" id="submit"></button>
+                <button class="knapp" id="submit"></button> <!-- Svar-knapp -->
             </div>
         </div>
     </div>
 
+    <script src="script.js"></script> <!-- Kobler til JavaScript-fil -->
 
-    <script src="script.js"></script>
-
+    <!-- Popup som vises ved riktig svar -->
     <div id="riktig-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
-    <div style="background:white; padding:20px; border-radius:10px; text-align:center;">
-        <h2>Riktig!</h2>
-        <img id="riktig-bilde" src="" alt="Riktig" style="width:500px; height:600px;">
+        <div style="background:white; padding:20px; border-radius:10px; text-align:center;">
+            <h2>Riktig!</h2>
+            <img id="riktig-bilde" src="" alt="Riktig" style="width:500px; height:600px;">
+        </div>
     </div>
-</div>
 </body>
 </html>
