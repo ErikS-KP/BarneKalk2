@@ -53,6 +53,7 @@ function LagSpørsmål() {
 function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     if (parseInt(brukerSvar) === riktigSvar) {
         sporsmaal.innerHTML = "Riktig!";
+         document.getElementById("riktig-popup").style.display = "flex";
         score++;
         if (score > highscore) {
             highscore = score;
@@ -60,8 +61,9 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         }
         // Nytt spørsmål etter litt tid
         setTimeout(function(){
+             document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
             tall = LagSpørsmål()
-        }, 1500);
+        }, 5000);
     } else {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
