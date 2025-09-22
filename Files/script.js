@@ -36,7 +36,7 @@ load_highscore();
 
 // Funksjon for å generere et tilfeldig heltall mellom min og max
 function randInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    return min + Math.floor(Math.random() * (max - min + 1));
 }
 
 // Funksjon for å lage et nytt spørsmål
@@ -79,7 +79,6 @@ document.querySelector("#reset").addEventListener("click", function () {
 });
 
 document.querySelector("#submit").addEventListener("click", function() {
-    console.log(tall)
     visRiktigFeilSvar(input, (tall[0] + tall[1]));
     input = "";
 });
