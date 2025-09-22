@@ -72,6 +72,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
+            document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
         }
         // Nytt spørsmål etter litt tid
         setTimeout(function(){
