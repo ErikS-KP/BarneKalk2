@@ -83,4 +83,4 @@ document.querySelector("#submit").addEventListener("click", function() {
     input = "";
 });
 
-tall = LagSpørsmål();
+LagSpørsmål();
