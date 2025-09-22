@@ -84,7 +84,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
             tall = LagSpørsmål()
-        }, 5000);
+        }, 3000);
     } else {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
