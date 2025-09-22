@@ -54,6 +54,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     if (parseInt(brukerSvar) === riktigSvar) {
         sporsmaal.innerHTML = "Riktig!";
         score++;
+        playVideo();
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
@@ -70,6 +71,21 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         }, 1500);
     }
 }
+
+const video = document.getElementById("video");
+async function playVideo() {
+    video.style.visibility = "visible";
+    try {
+        await video.play();
+    } catch (err) {
+        console.error("Error attempting to play video:", err);
+    }
+    setTimeout(() => {
+        video.pause();
+        video.style.visibility = "hidden";
+    }, 1500);
+}
+
 
 // Event listener for reset-knappen
 document.querySelector("#reset").addEventListener("click", function () {
