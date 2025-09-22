@@ -80,6 +80,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
+            document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
         }
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
