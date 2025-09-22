@@ -74,4 +74,4 @@ document.querySelector("#reset").addEventListener("click", function () {
 
 document.querySelector("#submit").addEventListener("click", visRiktigFeilSvar(brukerSvar, tall[0] + tall[1]));
 
-tall = LagSpørsmål();
+LagSpørsmål();
