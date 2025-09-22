@@ -55,7 +55,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         sporsmaal.innerHTML = "Riktig!";
          document.getElementById("riktig-popup").style.display = "flex";
         score++;
-        playVideo();
+
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
@@ -64,7 +64,7 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
             tall = LagSpørsmål()
-        }, 5000);
+        }, 3000);
     } else {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
@@ -74,19 +74,6 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     }
 }
 
-const video = document.getElementById("video");
-async function playVideo() {
-    video.style.visibility = "visible";
-    try {
-        await video.play();
-    } catch (err) {
-        console.error("Error attempting to play video:", err);
-    }
-    setTimeout(() => {
-        video.pause();
-        video.style.visibility = "hidden";
-    }, 1500);
-}
 
 
 // Event listener for reset-knappen
