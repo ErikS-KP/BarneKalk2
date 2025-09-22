@@ -20,6 +20,16 @@ for (let button of buttons) {
     });
 }
 
+// Legg til støtte for tastaturinput (kun tall 0-9)
+document.addEventListener("keydown", function (event) {
+    if (event.key >= "0" && event.key <= "9") {
+        input += event.key;
+        let questionText = `Hva er ${tall[0]} + ${tall[1]}?: `;
+        sporsmaal.innerHTML = questionText + input;
+        console.log("Input: " + input);
+    }
+});
+
 // Funksjon for å lagre highscore i localStorage
 function lagre_highscore() {
     localStorage.highscore = highscore;
