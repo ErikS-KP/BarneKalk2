@@ -77,12 +77,15 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         document.getElementById("riktig-bilde").src = tilfeldigBilde;
 
         document.getElementById("riktig-popup").style.display = "flex";
+        const audio = new Audio("Assets/Audio/correct.mp3");
+        audio.play();
+
         score++;
+        document.getElementById("score").innerHTML = "Score: " + score;
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
             document.getElementById("high-score").innerHTML = "Highscore: " + highscore;
-            document.getElementById("score").innerHTML = "Score: " + score;
         }
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
@@ -91,6 +94,9 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     } else {
         sporsmaal.innerHTML = "Feil!";
         score = 0;
+        document.getElementById("score").innerHTML = "Score: " + score;
+        const audio = new Audio("Assets/Audio/wrong.mp3");
+        audio.play();
         setTimeout(function(){
             tall = LagSpørsmål();
         }, 1500);
