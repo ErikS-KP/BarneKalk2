@@ -78,7 +78,6 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
 
         document.getElementById("riktig-popup").style.display = "flex";
         score++;
-        playVideo();
         if (score > highscore) {
             highscore = score;
             lagre_highscore();
