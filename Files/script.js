@@ -9,8 +9,9 @@ let input;
 
 // Legger til event listeners på knappene 1-9
 let buttons = document.querySelectorAll(".knapp");
-input = ""; // Ensure input is initialized as a string
+input = ""; // Initialiserer input som en tom streng
 
+// Let gjennom alle knappene
 for (let button of buttons) {
     button.addEventListener("click", function () {
         input += button.innerHTML;
@@ -44,6 +45,7 @@ function load_highscore() {
         highscore = parseInt(localStorage.highscore);
     }
 }
+// Laster inn highscore og oppdaterer high-score og score visning
 load_highscore();
 document.getElementById("high-score").innerHTML = "Highscore: " + highscore;
 document.getElementById("score").innerHTML = "Score: " + score;
@@ -61,11 +63,14 @@ function LagSpørsmål() {
 
     tall = [tall1, tall2]; // Oppdaterer global tall-array
 
+    // Oppdater spørsmål
     sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2}?: `;
     return tall;
 }
 
+// Funksjon for å vise riktig eller feil svar
 function visRiktigFeilSvar(brukerSvar, riktigSvar) {
+    // Hvis riktig
     if (parseInt(brukerSvar) === riktigSvar) {
         // Liste med bilde-URLer
         const bilder = [
@@ -76,10 +81,12 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
         const tilfeldigBilde = bilder[Math.floor(Math.random() * bilder.length)];
         document.getElementById("riktig-bilde").src = tilfeldigBilde;
 
+        // Vis popup med riktig svar og spill av lyd
         document.getElementById("riktig-popup").style.display = "flex";
         const audio = new Audio("Assets/Audio/correct.mp3");
         audio.play();
 
+        // Endre score og highscore
         score++;
         document.getElementById("score").innerHTML = "Score: " + score;
         if (score > highscore) {
@@ -87,16 +94,21 @@ function visRiktigFeilSvar(brukerSvar, riktigSvar) {
             lagre_highscore();
             document.getElementById("high-score").innerHTML = "Highscore: " + highscore;
         }
+        // Skjul popup etter 3 sekunder
         setTimeout(function(){
              document.getElementById("riktig-popup").style.display = "none"; // Skjul popup
             tall = LagSpørsmål()
         }, 3000);
+
+    // Hvis feil
     } else {
+        // Vis feil, spill av lyd og nullstill score
         sporsmaal.innerHTML = "Feil!";
         score = 0;
         document.getElementById("score").innerHTML = "Score: " + score;
         const audio = new Audio("Assets/Audio/wrong.mp3");
         audio.play();
+        // Vent 1.5 sekunder før nytt spørsmål
         setTimeout(function(){
             tall = LagSpørsmål();
         }, 1500);
@@ -112,9 +124,11 @@ document.querySelector("#reset").addEventListener("click", function () {
     input = "";
 });
 
+// Event listener for submit-knappen
 document.querySelector("#submit").addEventListener("click", function() {
     visRiktigFeilSvar(input, (tall[0] + tall[1]));
     input = "";
 });
 
+// Start med å lage det første spørsmålet
 LagSpørsmål();
