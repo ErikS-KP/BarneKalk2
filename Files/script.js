@@ -9,14 +9,14 @@ let input;
 
 // Legger til event listeners på knappene 1-9
 let buttons = document.querySelectorAll(".knapp");
-for(let button of buttons){
-    button.addEventListener("click", function(){
-        console.log(button.innerHTML)
-        if(button.innerHTML in [0,1,2,3,4,5,6,7,8,9]){
-            console.log(button.innerHTML)
-            sporsmaal.innerHTML += ` ${button.innerHTML}`
-            input = button.innerHTML
-        }
+input = ""; // Ensure input is initialized as a string
+
+for (let button of buttons) {
+    button.addEventListener("click", function () {
+        input += button.innerHTML;
+        let questionText = `Hva er ${tall[0]} + ${tall[1]}?: `;
+        sporsmaal.innerHTML = questionText + input;
+        console.log("Input: " + input);
     });
 }
 
@@ -33,7 +33,6 @@ function load_highscore() {
 }
 load_highscore();
 
-console.log("Highscore: " + highscore);
 
 // Funksjon for å generere et tilfeldig heltall mellom min og max
 function randInt(min, max) {
@@ -47,10 +46,11 @@ function LagSpørsmål() {
 
     tall = [tall1, tall2]; // Oppdaterer global tall-array
 
-    sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2} = ?`;
+    sporsmaal.innerHTML = `Hva er ${tall1} + ${tall2}?: `;
+    return tall;
 }
 
-function visRiktigFeilSvar() {
+function visRiktigFeilSvar(brukerSvar, riktigSvar) {
     if (parseInt(brukerSvar) === riktigSvar) {
         sporsmaal.innerHTML = "Riktig!";
         score++;
@@ -74,13 +74,14 @@ function visRiktigFeilSvar() {
 // Event listener for reset-knappen
 document.querySelector("#reset").addEventListener("click", function () {
     score = 0; // Nullstill poeng
-    LagSpørsmål();
+    visRiktigFeilSvar(input, (tall[0] + tall[1]));
     input = "";
 });
 
 document.querySelector("#submit").addEventListener("click", function() {
-    visRiktigFeilSvar(input, tall[0] + tall[1]);
-    tall = LagSpørsmål()
+    console.log(tall)
+    visRiktigFeilSvar(input, (tall[0] + tall[1]));
+    input = "";
 });
 
 tall = LagSpørsmål();
