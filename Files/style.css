@@ -199,11 +199,11 @@ ul h1 {
      box-shadow: 0 2px 12px rgba(76,175,80,0.10);
 }
 
-/* Score-container: responsive and not fixed */
+
 #score-container {
     display: flex;
     flex-direction: row;
-    position: static; /* Changed from fixed to static */
+    position: static; 
     width: 100%;
     max-width: 420px;
     margin: 1rem auto 1rem auto;
@@ -218,7 +218,10 @@ ul h1 {
     font-family: 'Comic Sans MS', 'Comic Sans', cursive, sans-serif;
 }
 
-/* Make main container stack vertically on small screens */
+.scoring{
+     color: rgb(33, 151, 131);
+}
+
 #container {
     flex-direction: column;
     align-items: center;
@@ -226,7 +229,7 @@ ul h1 {
     width: 100vw;
 }
 
-/* Responsive kalk-container */
+
 #kalk-container {
     width: 90vw;
     max-width: 420px;
